@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Dhobi Junction</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tab2">TabActivity2</string>
+    <string name="tab_text_1">Laundary</string>
+    <string name="tab_text_2">Dry Cleaning</string>
+    <string name="tab_text_3">Press</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>
