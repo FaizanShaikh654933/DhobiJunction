@@ -50,15 +50,8 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartModel, CartAdapter
         preferences=cartFragment.getSharedPreferences("Users", Context.MODE_PRIVATE);
         // holder.product_kg_gm.setText(" Per " + list.get(position).getProduct_kg_gm());
 
-      //  holder.cart_total_price.setText(" ₹ " + String.valueOf(Integer.parseInt(model.getQty().trim()) *Integer.parseInt(model.getPrice())));
-        FirebaseFirestore.getInstance().collection("USERS").document(preferences.getString("userMobile",""))
-                .collection("USERCART").whereEqualTo("pId",model.getpId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                holder.cart_total_price.setText(" ₹ " + String.valueOf(Integer.parseInt(value.getDocuments().get(0).get("qty").toString())
-                        *Integer.parseInt(value.getDocuments().get(0).get("price").toString())));
-            }
-        });
+        holder.cart_total_price.setText(" ₹ " + String.valueOf(Integer.parseInt(model.getQty().trim()) *Integer.parseInt(model.getPrice())));
+      //  holder.cart_total_price.setText(model.getTotal());
         holder.cart_number.setText(model.getQty());
         Glide.with(cartFragment).load(model.getImage()).into(holder.cart_image);
 
@@ -71,8 +64,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartModel, CartAdapter
                 holder.cart_add.setVisibility(View.GONE);
                 holder.cart_edit.setVisibility(View.VISIBLE);
                 qty.getQty(holder.cart_number.getText().toString(),model);
-
-
+                notifyDataSetChanged();
             }
         });
         holder.cart_delete.setOnClickListener(new View.OnClickListener() {

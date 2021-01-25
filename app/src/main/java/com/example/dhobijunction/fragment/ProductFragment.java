@@ -70,7 +70,7 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
         View view = inflater.inflate(R.layout.product_fragment, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
 
-        preferences = getActivity().getSharedPreferences("Users",0);
+        preferences = getActivity().getSharedPreferences("Users", 0);
 
         Query query = FirebaseFirestore.getInstance().collection("PRODUCTS")
                 .whereEqualTo("sId", model.getsId());
@@ -81,7 +81,7 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new ProductAdapter(this, rvOptions,this);
+        adapter = new ProductAdapter(this, rvOptions, this);
         recyclerView.setAdapter(adapter);
         /*
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -135,26 +135,26 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
     }
 
     @Override
-    public void addToCart(ProModel product,String proQty) {
-        CartModel model=new CartModel();
+    public void addToCart(ProModel product, String proQty) {
+        CartModel model = new CartModel();
         model.setQty(proQty);
         model.setTitle(product.getTitle());
         model.setPrice(product.getPrice());
         model.setpId(product.getpId());
         model.setImage(product.getImage());
         model.setsId(product.getsId());
-
+        model.setTotal(String.valueOf(Integer.parseInt(product.getPrice()) * Integer.parseInt(proQty)));
 
         FirebaseFirestore.getInstance().collection("USERS")
-                .document(preferences.getString("userMobile",""))
+                .document(preferences.getString("userMobile", ""))
                 .collection("USERCART")
                 .add(model).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Map<String,Object> map=new HashMap<>();
-                map.put("cartItemId",documentReference.getId());
+                Map<String, Object> map = new HashMap<>();
+                map.put("cartItemId", documentReference.getId());
                 FirebaseFirestore.getInstance().collection("USERS")
-                        .document(preferences.getString("userMobile",""))
+                        .document(preferences.getString("userMobile", ""))
                         .collection("USERCART").document(documentReference.getId()).update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -165,7 +165,7 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Failed: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

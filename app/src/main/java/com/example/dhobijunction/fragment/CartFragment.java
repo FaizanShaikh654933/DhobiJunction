@@ -40,6 +40,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     TextView t1, t6;
     String mobile = "";
     int total = 0;
+    boolean isQtyUpdated;
 
 
     public CartFragment() {
@@ -84,20 +85,20 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
 
 
     private void getCartTotal() {
-        /*FirebaseFirestore.getInstance().collection("USERS")
+        FirebaseFirestore.getInstance().collection("USERS")
                 .document(mobile).collection("USERCART").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value != null && !value.isEmpty()) {
                     for (int i = 0; i < value.size(); i++) {
 
-                       //total += Integer.parseInt(value.getDocuments().get(i).get("price").toString()) * Integer.parseInt(value.getDocuments().get(i).get("qty").toString());
+                       total += Integer.parseInt(value.getDocuments().get(i).get("price").toString()) * Integer.parseInt(value.getDocuments().get(i).get("qty").toString());
 
                     }
                     t6.setText(String.valueOf(total));
                 }
             }
-        });*/
+        });
     }
 
     @Override
@@ -116,20 +117,25 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     public void getQty(String s, CartModel model) {
         final Map<String, Object> map = new HashMap<>();
         map.put("qty", s);
+        map.put("total",String.valueOf(Integer.parseInt(s)*Integer.parseInt(model.getPrice())));
         FirebaseFirestore.getInstance().collection("USERS").document(pref.getString("userMobile", ""))
                 .collection("USERCART").whereEqualTo("cartItemId", model.getCartItemId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
                 if (value != null && !value.isEmpty()) {
-                    value.getDocuments().get(0).getReference().update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
-                                Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(getActivity(), "" + task.getException(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        value.getDocuments().get(0).getReference().update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                                        map.clear();
+                                    }
+                                else
+                                    Toast.makeText(getActivity(), "" + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 }
                 if (error != null) {
                     Toast.makeText(getActivity(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
