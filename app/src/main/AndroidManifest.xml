@@ -12,25 +12,25 @@
         android:roundIcon="@mipmap/dhobijunction"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ProductActivity"></activity>
+        <activity android:name=".activity.CheckoutActivity"></activity>
+        <activity android:name=".activity.ProductActivity" />
         <activity android:name=".activity.TermsAndConditionActivity" />
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.ContactUsActivity" />
         <activity android:name=".activity.OffersActivity" />
         <activity
             android:name=".activity.BottomActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".activity.SplashActivity" >
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.RegistrationActivity" />
         <activity android:name=".activity.forgotpasswordActivity" />
-        <activity android:name=".activity.MainActivity">
-        </activity>
+        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

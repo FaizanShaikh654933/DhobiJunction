@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dhobijunction.R;
+import com.example.dhobijunction.activity.CheckoutActivity;
 import com.example.dhobijunction.activity.OffersActivity;
 import com.example.dhobijunction.adapter.CartAdapter;
 import com.example.dhobijunction.adapter.OnQtyUpdate;
@@ -38,6 +40,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     CartModel model;
     SharedPreferences pref;
     TextView t1, t6;
+    Button b1;
     String mobile = "";
     int total = 0;
     boolean isQtyUpdated;
@@ -58,6 +61,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
         recyclerView = view.findViewById(R.id.cart_recyclerview);
         t1 = view.findViewById(R.id.cart_tv1);
         t6 = view.findViewById(R.id.cart_tv6);
+        b1 = view.findViewById(R.id.cart_Bt1);
 
         pref = getContext().getSharedPreferences("Users", 0);
         mobile = pref.getString("userMobile", "");
@@ -72,6 +76,13 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
         adapter = new CartAdapter(getActivity(), rvOptions, this);
         recyclerView.setAdapter(adapter);
 
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CheckoutActivity.class);
+                startActivity(intent);
+            }
+        });
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

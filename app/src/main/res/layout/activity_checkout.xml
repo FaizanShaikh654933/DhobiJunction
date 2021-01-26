@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CheckoutActivity">
+
+    <TextView
+        android:id="@+id/checkout_tv1"
+        android:text="Delivery Address"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="#0C0C0C"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:id="@+id/checkout_line"
+        android:layout_below="@id/checkout_tv1"
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/checkout_tv2"
+        android:layout_below="@id/checkout_line"
+        android:text="Please input correct Information(*)"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/checkout_cardview1"
+        android:layout_below="@id/checkout_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/checkout_name"
+                android:hint="Name"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/checkout_email"
+                android:layout_below="@id/checkout_name"
+                android:hint="Email"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/checkout_address"
+                android:layout_below="@id/checkout_email"
+                android:hint="Address"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/checkout_mobilenumber"
+                android:layout_below="@id/checkout_address"
+                android:hint="Moile Phone"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/checkout_promocode"
+                android:layout_below="@id/checkout_mobilenumber"
+                android:hint="Discount Coupon"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/checkout_tv3"
+        android:layout_below="@id/checkout_cardview1"
+        android:text="Order Details"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="#0C0C0C"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/checkout_cardview2"
+        android:layout_below="@id/checkout_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/checkout_linearlayout1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginHorizontal="20dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/checkout_deliverytime"
+                android:text="Delivery time"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="3"
+                android:id="@+id/checkout_tv4"
+                android:textAlignment="textEnd"
+                android:text="ASAP"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/checkout_linearlayout2"
+            android:layout_below="@id/checkout_linearlayout1"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginHorizontal="20dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/checkout_paymentmethod"
+                android:text="Payment method"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="2"
+                android:id="@+id/checkout_tv5"
+                android:text="Please Select (>)"
+                android:textSize="14sp"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end" />
+        </LinearLayout>
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
