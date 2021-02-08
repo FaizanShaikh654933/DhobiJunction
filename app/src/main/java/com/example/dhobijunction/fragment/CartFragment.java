@@ -101,9 +101,10 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value != null && !value.isEmpty()) {
+                    int total = 0;
                     for (int i = 0; i < value.size(); i++) {
 
-                       total += Integer.parseInt(value.getDocuments().get(i).get("price").toString()) * Integer.parseInt(value.getDocuments().get(i).get("qty").toString());
+                       total += Integer.parseInt(value.getDocuments().get(i).get("total").toString());
 
                     }
                     t6.setText(String.valueOf(total));
