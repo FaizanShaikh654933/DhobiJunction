@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.dhobijunction.R;
@@ -25,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity {
+    Button b1;
     SharedPreferences pref;
     String mobile = "";
     RecyclerView recyclerView;
@@ -37,6 +40,17 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         getSupportActionBar().setTitle("Checkout");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        b1 = findViewById(R.id.btn_payment);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CheckoutActivity.this,PaymentActivity.class));
+            }
+        });
+
+        pref = getSharedPreferences("Users",0);
+        mobile = pref.getString("userMobile","");
+
         s1=findViewById(R.id.checkout_spiner);
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,timelist);
