@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.dhobijunction.BuildConfig;
 import com.example.dhobijunction.R;
 import com.example.dhobijunction.fragment.CartFragment;
 import com.example.dhobijunction.fragment.HomeFragment;
@@ -72,9 +73,15 @@ public class BottomActivity extends AppCompatActivity {
                     case R.id.item6:
                         startActivity(new Intent(BottomActivity.this,AboutUsActivity.class));
                         break;
-                 //   case R.id.item7:
+                    case R.id.item7:
                    //     startActivity(new Intent(BottomActivity.this,ShareAppActivity.class));
-                    //    break;
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                                "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+                        sendIntent.setType("text/plain");
+                        startActivity(sendIntent);
+                        break;
                     case R.id.item8:
                         startActivity(new Intent(BottomActivity.this,TermsAndConditionActivity.class));
                         break;

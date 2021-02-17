@@ -40,18 +40,19 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         getSupportActionBar().setTitle("Checkout");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        b1 = findViewById(R.id.btn_payment);
+        b1 = findViewById(R.id.checkout_payment);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CheckoutActivity.this,PaymentActivity.class));
+                //startActivity(new Intent(CheckoutActivity.this,PaymentActivity.class));
+                Intent intent=new Intent(CheckoutActivity.this,PaymentActivity.class);
+                startActivity(intent);
             }
         });
-
         pref = getSharedPreferences("Users",0);
         mobile = pref.getString("userMobile","");
 
-        s1=findViewById(R.id.checkout_spiner);
+        s1=findViewById(R.id.checkout_spinner);
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,timelist);
         s1.setAdapter(spinnerArrayAdapter);
@@ -61,7 +62,7 @@ public class CheckoutActivity extends AppCompatActivity {
         FirestoreRecyclerOptions<CheckoutModel> rvOptions = new FirestoreRecyclerOptions.Builder<CheckoutModel>()
                 .setQuery(query, CheckoutModel.class).build();
 
-        recyclerView = findViewById(R.id.cart_recyclerview);
+        recyclerView = findViewById(R.id.checkout_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new CheckoutAdapter(this, rvOptions, this);
@@ -71,5 +72,16 @@ public class CheckoutActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

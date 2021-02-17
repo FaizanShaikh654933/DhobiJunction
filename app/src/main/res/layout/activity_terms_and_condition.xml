@@ -1,17 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.TermsAndConditionActivity">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
     <TextView
-        android:textColor="@android:color/holo_blue_light"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:text="Terms And Condition"
+        android:id="@+id/terms_and_condition_tv1"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Terms And Condition:-"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/terms_and_condition_tv2"
+        android:layout_below="@id/terms_and_condition_tv1"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="The services provided by Dhobi junction are subject to your compliance with and acceptance of the terms and conditions set forth below. Your Dhobi junction services indicates your agreement to be bound by the terms and conditions contained here in "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv3"
+        android:layout_below="@id/terms_and_condition_tv2"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Payment:-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv4"
+        android:layout_below="@id/terms_and_condition_tv3"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="10dp"
+        android:text="The customer must complete payment of the agreed upon charges on or before the completion of the Services. All payments are non-refundable."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv5"
+        android:layout_below="@id/terms_and_condition_tv4"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Inventory:-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv6"
+        android:layout_below="@id/terms_and_condition_tv5"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Dhobi junction is not responsible for any items not listed on the Collection Slip. The Customer agrees to be bound by the content of the Collectionn Slip."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv7"
+        android:layout_below="@id/terms_and_condition_tv6"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Garment care:-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv8"
+        android:layout_below="@id/terms_and_condition_tv7"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Dhobi junction will use reasonable efforts to maintain a high-quality cleaning service. Dhobi junction accepts no liability for damage due to normal cleaning of items with or without care instructions, or for dry clean only items, which are requested to be laundered by the Customer. Dhobi junction accepts no liability for special care items that require special attention, including dry clean only items. Dhobi junction is not responsible for clothing bleedinng, shrinking, or otherwise changing as a result for normal cleaning procedures. Dhobi junction reserves the right to refuse to clean any Dhobi junction does not gurantee the removal of all stains. Dhobi junction is not responsible for loss of or damage to any personal or non-cleanable items left in clothing or laundry bags such as money, jewelry, or any other item. The customer agrees not to leave such items in their clothing or in their laundry bags. Zippers behave unpredictably while cleaning. The Customer is notified that their is a possibility of zipper issues while following normal cleaning procedures, and Dhobi junction does not accept any liability for such issues-------------------"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv9"
+        android:layout_below="@id/terms_and_condition_tv8"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Loss or damage:-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv10"
+        android:layout_below="@id/terms_and_condition_tv9"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Missing or damaged items must be reported to Dhoni junction within 24 hours of delivery of your garments/linen. Failure to report the missing or damaged item within 24 hours shall remove and liability of Dhobi junction for the missing or damaged item. In the event that any item is lost or damaged Dhobi junction, Dhobi junction's liability with respect to any damaged or lost items shall not exceed ten (10) times out charge for cleaning that garment regardless of brand or condition. Dhobi junction is not liable for any preexisting damage is found or if we have a concern about the colorfastness or the age or weakness of the fabric."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv11"
+        android:layout_below="@id/terms_and_condition_tv10"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Uncollected Items:-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv12"
+        android:layout_below="@id/terms_and_condition_tv11"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Dhobi Junction reserves the right to dispose of any items not collected within 90 days of the date started on the collection slip. Dhobi Junction shall have no liability whatsoever in respect of items dispose of pursuant to this clause."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv13"
+        android:layout_below="@id/terms_and_condition_tv12"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Use of Third-Party Service Providers:-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/terms_and_condition_tv14"
+        android:layout_below="@id/terms_and_condition_tv13"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Dhobi junction reserves the right to utilize an outsourced, vendor, or outside service provider for any service, without notice to the customer."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
