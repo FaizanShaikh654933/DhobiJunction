@@ -26,6 +26,10 @@ android {
         viewBinding true
         dataBinding true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -66,5 +70,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-storage:6.3.0'
 
     implementation 'com.payumoney.sdkui:plug-n-play:1.6.0'
+
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
 }

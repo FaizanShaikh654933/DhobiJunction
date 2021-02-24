@@ -4,34 +4,47 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.dhobijunction.R;
+import com.example.dhobijunction.model.OrderModel;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.payumoney.core.PayUmoneySdkInitializer;
 import com.payumoney.core.entity.TransactionResponse;
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PaymentActivity extends AppCompatActivity {
 
     String key = "ub4zyyCk";
     String txnid = "1";
-    String amount = "10";
+    String amount = "";
     String productinfo = "Dhobi Junction";
     String firstname = "Faizan";
     String email = "faizanshaikh654933@gmail.com";
     String salt = "lmBlYqpa5L";
     String merchantId = "7380570";
     String serverCalculatedHash;
+    String userMobile;
+    OrderModel orderModel;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_payment);
+        getSupportActionBar().hide();
+        amount = getIntent().getStringExtra("total");
+        preferences = getSharedPreferences("Users", 0);
+        userMobile = preferences.getString("userMobile", "");
+        orderModel = (OrderModel) getIntent().getSerializableExtra("order");
         String hashSequence = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
         serverCalculatedHash = hashCal("SHA-512", hashSequence);
 
@@ -104,10 +117,22 @@ public class PaymentActivity extends AppCompatActivity {
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
 
                 if(transactionResponse.getTransactionStatus().equals( TransactionResponse.TransactionStatus.SUCCESSFUL )){
-                    Toast.makeText(this, "Successfull", Toast.LENGTH_SHORT).show();
+                    FirebaseFirestore.getInstance().collection("USERS").document(userMobile).collection("ORDERS")
+                            .add(orderModel).addOnSuccessListener(doc -> {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("orderId", doc.getId());
+                        doc.update(map).addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                map.clear();
+                                Toast.makeText(this, "Order Success", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    });
 
                 } else{
-                    //Failure Transaction
+                    Toast.makeText(this, "TRansaction Failed", Toast.LENGTH_SHORT).show();
                 }
 
                 // Response from Payumoney

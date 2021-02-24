@@ -17,6 +17,24 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:id="@+id/t1"/>
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/e1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:hint="Enter new Title" />
+
+        <ImageButton
+            android:id="@+id/i3"
+            android:visibility="gone"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="250dp"
+            android:background="@drawable/ic_baseline_check_24" />
         <ImageButton
             android:id="@+id/i1"
             android:layout_width="29dp"
