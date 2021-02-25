@@ -37,7 +37,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(list.get(position).getTitle());
-        holder.price.setText(list.get(position).getPrice());
+        holder.total.setText(list.get(position).getTotal());
         Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
     }
 
@@ -47,13 +47,13 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, price;
+        TextView title, total;
         ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.Order_main_detail_title);
-            price = itemView.findViewById(R.id.Order_main_detail_price);
+            total = itemView.findViewById(R.id.Order_main_detail_total);
             imageView = itemView.findViewById(R.id.Order_main_detail_image);
         }
     }

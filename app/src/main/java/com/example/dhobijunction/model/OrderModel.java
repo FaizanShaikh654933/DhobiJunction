@@ -21,7 +21,16 @@ public class OrderModel implements Serializable {
     String Email;
     String number;
     String Address;
-    String Total;
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    String total;
     @ServerTimestamp
     Date timestamp;
     String deliverTime;
@@ -51,13 +60,7 @@ public class OrderModel implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public String getTotal() {
-        return Total;
-    }
 
-    public void setTotal(String total) {
-        Total = total;
-    }
 
     List<CheckoutModel> modelList;
 

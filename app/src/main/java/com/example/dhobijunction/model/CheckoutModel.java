@@ -1,6 +1,8 @@
 package com.example.dhobijunction.model;
 
-public class CheckoutModel {
+import java.io.Serializable;
+
+public class CheckoutModel implements Serializable {
     String image;
     String title;
     String total;

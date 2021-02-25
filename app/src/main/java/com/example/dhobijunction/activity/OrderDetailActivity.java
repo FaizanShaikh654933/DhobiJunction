@@ -27,7 +27,8 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Order Detail");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerView = findViewById(R.id.Order_detail_recyclerview);
         textView = findViewById(R.id.Order_detail_total);
 
@@ -40,5 +41,10 @@ public class OrderDetailActivity extends AppCompatActivity {
         adapter = new OrderDetailAdapter(this, Model.getModelList());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

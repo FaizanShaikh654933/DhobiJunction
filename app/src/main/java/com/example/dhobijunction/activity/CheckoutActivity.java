@@ -56,12 +56,14 @@ public class CheckoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
+        screen = ActivityCheckoutBinding.inflate(getLayoutInflater());
+        setContentView(screen.getRoot());
         getSupportActionBar().setTitle("Checkout");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         pref = getSharedPreferences("Users", 0);
         mobile = pref.getString("userMobile", "");
+        total  = getIntent().getStringExtra("total");
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timelist);
         screen.checkoutSpinner.setAdapter(spinnerArrayAdapter);
@@ -159,7 +161,7 @@ public class CheckoutActivity extends AppCompatActivity {
                             }
                         });
                     }
-                    if (screen.radiogroup1.getCheckedRadioButtonId()==R.id.online) {
+                    if (screen.radiogroup1.getCheckedRadioButtonId() == R.id.online) {
 
 
                         FirebaseFirestore.getInstance().collection("USERS")
@@ -171,7 +173,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
                                 intent.putExtra("total", total);
-                                intent.putExtra("order", model);
+                                intent.putExtra("order",model);
 //                                intent.putExtra("name",  screen.checkoutName.getText());
 //                                intent.putExtra("email", screen.checkoutEmail.getText());
 //                                intent.putExtra("number", screen.checkoutMobilenumber.getText());
