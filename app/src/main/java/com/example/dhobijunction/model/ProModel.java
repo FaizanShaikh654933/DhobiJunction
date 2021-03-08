@@ -4,6 +4,7 @@ public class ProModel {
 
     String title,sId,image,price,pId;
 
+
     public String getpId() {
         return pId;
     }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/category_name"
+        android:text="Category:-"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/category_edittext"
+        android:layout_toRightOf="@id/category_name"
+        android:layout_marginTop="50dp"
+        android:hint="Enter New Category Name"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/category_button"
+        android:layout_below="@id/category_name"
+        android:layout_marginTop="40dp"
+        android:text="Add"
+        android:textColor="@android:color/black"
+        android:background="@android:color/holo_blue_light"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/category_button">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
