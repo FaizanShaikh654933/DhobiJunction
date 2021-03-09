@@ -68,7 +68,7 @@ public class PaymentActivity extends AppCompatActivity {
                 .setUdf8("")
                 .setUdf9("")
                 .setUdf10("")
-                .setIsDebug(true)                              // Integration environment - true (Debug)/ false(Production)
+                .setIsDebug(false)                              // Integration environment - true (Debug)/ false(Production)
                 .setKey(key)                        // Merchant key
                 .setMerchantId(merchantId);
 

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -22,8 +23,9 @@
                 <ImageView
                     android:layout_marginLeft="20dp"
                     android:background="@mipmap/ic_launcher"
+                    android:layout_centerVertical="true"
                     android:layout_width="70dp"
-                    android:layout_height="130dp"
+                    android:layout_height="90dp"
                     android:id="@+id/Order_iv"/>
 
                 <TextView
@@ -89,7 +91,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="15dp"
                     android:layout_alignRight="@id/Order_date"
-
                     android:text="Total Price" />
 
             </RelativeLayout>

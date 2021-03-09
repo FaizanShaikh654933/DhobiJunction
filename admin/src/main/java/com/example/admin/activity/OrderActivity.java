@@ -25,7 +25,8 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         recyclerView=findViewById(R.id.rv);
-
+        getSupportActionBar().setTitle("Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Query query = FirebaseFirestore.getInstance().collectionGroup("ORDERS");
@@ -39,6 +40,7 @@ public class OrderActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -49,5 +51,11 @@ public class OrderActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

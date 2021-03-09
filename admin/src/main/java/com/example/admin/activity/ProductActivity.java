@@ -3,6 +3,8 @@ package com.example.admin.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.admin.R;
+import com.example.admin.adapter.ProductAdapter;
+import com.example.admin.adapter.SubCategoryAdapter;
 import com.example.admin.model.ProductModel;
 import com.example.admin.model.SubCategoryModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,6 +57,8 @@ public class ProductActivity extends AppCompatActivity {
     List<SubCategoryModel> list;
     FirebaseStorage storage;
     StorageReference storageReference;
+    RecyclerView recyclerView;
+    ProductAdapter adapter;
     List<String> SubCategoryList = new ArrayList<>();
 
     @Override
@@ -64,9 +70,12 @@ public class ProductActivity extends AppCompatActivity {
         e1 = findViewById(R.id.pr_e1);
         e2 = findViewById(R.id.pr_e2);
         spinner = findViewById(R.id.pr_sp);
+        recyclerView = findViewById(R.id.pr_rv);
         imageView = findViewById(R.id.pr_imageView);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        getSupportActionBar().setTitle("Product");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,8 +179,21 @@ public class ProductActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
+        FirebaseFirestore.getInstance().collection("PRODUCTS").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null && !value.isEmpty()) {
+                    modelList=value.toObjects(ProductModel.class);
+                    adapter=new ProductAdapter(ProductActivity.this,modelList);
+                    LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ProductActivity.this);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+
+                }
+            }
+        });
+    }
 
         @Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -190,5 +212,11 @@ public class ProductActivity extends AppCompatActivity {
                 }
             }
         }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
 
 }

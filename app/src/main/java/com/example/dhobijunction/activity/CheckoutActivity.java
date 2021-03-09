@@ -122,7 +122,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     screen.checkoutAddress.setError("Enter Your Address");
 
                 }
-                if (Phone.length() < 10) {
+                if (Phone.length() < 10 || Phone.length() > 10) {
                     screen.checkoutMobilenumber.setError("Phone Number Must be 10 number ");
 
 

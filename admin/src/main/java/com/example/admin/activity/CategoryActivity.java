@@ -34,6 +34,8 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        getSupportActionBar().setTitle("Category");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         e1 = findViewById(R.id.category_edittext);
         b1 = findViewById(R.id.category_button);
@@ -73,5 +75,10 @@ public class CategoryActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

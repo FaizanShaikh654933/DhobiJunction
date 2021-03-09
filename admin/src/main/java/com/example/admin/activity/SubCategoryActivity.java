@@ -45,6 +45,8 @@ public class SubCategoryActivity extends AppCompatActivity {
         e1 = findViewById(R.id.subcategory_edittext);
         b1 = findViewById(R.id.subcategory_button);
         recyclerView = findViewById(R.id.subcategory_recyclerview);
+        getSupportActionBar().setTitle("Sub Category");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FirebaseFirestore.getInstance().collection("CATEGORY").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -104,6 +106,11 @@ public class SubCategoryActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
+
 }

@@ -64,11 +64,10 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
 
                         if (value !=null && !value.isEmpty()){
                             holder.update.setVisibility(View.GONE);
-
                             holder.editText.setVisibility(View.GONE);
                             holder.textView.setVisibility(View.VISIBLE);
-                            holder.update.setVisibility(View.GONE);
                             value.getDocuments().get(0).getReference().update(map);
+                            map.clear();
                         }
                     }
                 });
@@ -77,7 +76,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CategoryModel categoryModel=new CategoryModel();
+                // CategoryModel categoryModel=new CategoryModel();
                 FirebaseFirestore.getInstance().collection("SUB_CATEGORY").whereEqualTo("sId",modelList.get(position).getsId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
