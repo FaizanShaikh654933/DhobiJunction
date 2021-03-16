@@ -1,3 +1,4 @@
+include ':deliveryboy'
 include ':admin'
 include ':app'
 rootProject.name = "Dhobi Junction"

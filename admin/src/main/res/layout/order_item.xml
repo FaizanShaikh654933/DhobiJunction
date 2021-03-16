@@ -78,10 +78,37 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/Order_iv"
                     android:id="@+id/Order_payment"
-
                     android:textSize="15dp"
                     android:text="Payment"
                     android:layout_below="@id/Order_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/Order_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel Order"
+                    android:background="@android:color/holo_red_light"
+                    android:layout_below="@id/Order_total"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentRight="true" />
+
+                <Spinner
+                    android:layout_below="@id/Order_button"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/Order_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageButton
+                    android:id="@+id/Order_imagebutton"
+                    android:background="@drawable/ic_baseline_check_24"
+                    android:layout_below="@id/Order_button"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView

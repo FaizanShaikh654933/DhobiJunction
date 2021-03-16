@@ -2,26 +2,42 @@ package com.example.admin.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.admin.R;
 import com.example.admin.activity.OrderActivity;
 import com.example.admin.activity.OrderDetailActivity;
+import com.example.admin.model.DeliveryModel;
 import com.example.admin.model.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapter.ViewHolder> {
     Context context;
+
+    List<DeliveryModel> list;
+    List<String> DeliveryList = new ArrayList<>();
 
     public OrderAdapter(OrderActivity orderActivity, @NonNull FirestoreRecyclerOptions<OrderModel> options, OrderActivity activity) {
         super(options);
@@ -38,8 +54,41 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
         holder.address.setText(model.getAddress());
         holder.payment.setText(model.getPayMentMethod());
         holder.number.setText(model.getNumber());
+              holder.cancelorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore.getInstance().collection("USERS").document("")
+                        .collection("ORDERS")
+                        .whereEqualTo("orderId",model.getOrderId())
+                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                                if (value!=null && !value.isEmpty()){
+                                    value.getDocuments().get(0).getReference().delete();
+                                    Toast.makeText(context, "Order Cancel Succesfull", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
+            }
+        });
+
 
         holder.name.setText(model.getName());
+        FirebaseFirestore.getInstance().collection("DELIVERYBOY").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value !=null && !value.isEmpty()) {
+                    list =value.toObjects(DeliveryModel.class);
+                    for (DeliveryModel delivery:list){
+                        DeliveryList.add(delivery.getName());
+                    }
+                    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,DeliveryList);
+                   holder.spinner.setAdapter(arrayAdapter);
+
+                }
+            }
+        });
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +110,8 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView, date,name,number,address,email,payment;
         LinearLayout linearLayout;
+        Button cancelorder;
+        Spinner spinner;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.Order_name);
@@ -71,6 +122,8 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
             date = itemView.findViewById(R.id.Order_date);
             textView = itemView.findViewById(R.id.Order_total);
             linearLayout = itemView.findViewById(R.id.Order_click);
+            cancelorder=itemView.findViewById(R.id.Order_button);
+            spinner=itemView.findViewById(R.id.Order_spinner);
         }
     }
 }

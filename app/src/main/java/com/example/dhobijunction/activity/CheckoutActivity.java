@@ -150,6 +150,7 @@ public class CheckoutActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             map.clear();
                                             Toast.makeText(CheckoutActivity.this, "Order Success", Toast.LENGTH_SHORT).show();
+                                            finish();
                                         } else {
                                             Toast.makeText(CheckoutActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                                         }

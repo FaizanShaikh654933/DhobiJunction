@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dhobijunction.R;
+import com.example.dhobijunction.fragment.HomeFragment;
 import com.example.dhobijunction.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,7 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
     String verificationId;
     FirebaseFirestore fstore;
     UserModel model;
-
+    TextView t1;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     @Override
@@ -46,11 +48,19 @@ public class RegistrationActivity extends AppCompatActivity {
         e2 = findViewById(R.id.reg_otp);
         b1 = findViewById(R.id.reg_sendotp);
         b2 = findViewById(R.id.reg_submit);
-
+        t1 = findViewById(R.id.reg_reg_skip);
         auth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         preferences = getApplicationContext().getSharedPreferences("Users",0);
         editor = preferences.edit();
+
+        t1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegistrationActivity.this, BottomActivity.class);
+                startActivity(intent);
+            }
+        });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,4 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".activity.DeliveryBoyActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/l1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"/>
+
+            <EditText
+                android:id="@+id/d_e1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/l2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number:"/>
+
+            <EditText
+                android:id="@+id/d_e2"
+                android:maxLength="10"
+                android:inputType="number"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/l3"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"/>
+
+            <EditText
+                android:id="@+id/d_e3"
+                android:inputType="textEmailAddress"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/l4"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password:"/>
+
+            <EditText
+                android:id="@+id/d_e4"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/d_b1"
+            android:layout_gravity="center"
+            android:text="add"
+            android:layout_centerHorizontal="true"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/d_rv"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

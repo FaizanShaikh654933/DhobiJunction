@@ -16,9 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.OrderDetailActivity"></activity>
-        <activity android:name=".activity.admin">
-        </activity>
+        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.OrderDetailActivity" />
+        <activity android:name=".activity.admin"></activity>
         <activity android:name=".activity.PaymentActivity" />
         <activity android:name=".activity.CheckoutActivity" />
         <activity android:name=".activity.ProductActivity" />

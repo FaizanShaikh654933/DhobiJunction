@@ -34,7 +34,7 @@
                     android:id="@+id/title1"
                     android:layout_toRightOf="@id/image"
                     android:hint="Title"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -52,8 +52,9 @@
 
                 <TextView
                     android:id="@+id/quantity"
+                    android:layout_below="@id/title1"
                     android:textSize="18sp"
-                    android:layout_toRightOf="@id/title1"
+                    android:layout_toRightOf="@id/price"
                     android:hint="Qty="
                     android:layout_marginLeft="40dp"
                     android:layout_width="wrap_content"
@@ -61,6 +62,7 @@
 
                 <TextView
                     android:id="@+id/qty"
+                    android:layout_below="@id/title1"
                     android:textSize="18sp"
                     android:layout_toRightOf="@id/quantity"
                     android:text="qty"

@@ -67,6 +67,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Viewhold
 
                 HashMap<String,Object> map=new HashMap<>();
                 map.put("title",holder.editText.getText().toString());
+                map.put("price",holder.pricetext.getText().toString());
                 FirebaseFirestore.getInstance().collection("PRODUCTS").whereEqualTo("pId",modelList.get(position).getpId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

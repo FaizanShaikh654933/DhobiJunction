@@ -13,6 +13,8 @@ public class OrderModel implements Serializable {
     String Total;
     String Name;
 
+
+
     public String getEmail() {
         return Email;
     }

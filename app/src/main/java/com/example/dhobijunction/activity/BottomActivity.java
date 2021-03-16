@@ -56,24 +56,27 @@ public class BottomActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.item1:
-                        startActivity(new Intent(BottomActivity.this,ProductActivity.class));
+                        startActivity(new Intent(BottomActivity.this,ProfileActivity.class));
                         break;
                     case R.id.item2:
-                        startActivity(new Intent(BottomActivity.this,OffersActivity.class));
+                        startActivity(new Intent(BottomActivity.this,ProductActivity.class));
                         break;
                     case R.id.item3:
-                        bottomNav.setSelectedItemId(R.id.nav_order);
+                        startActivity(new Intent(BottomActivity.this,OffersActivity.class));
                         break;
                     case R.id.item4:
-                        bottomNav.setSelectedItemId(R.id.nav_cart);
+                        bottomNav.setSelectedItemId(R.id.nav_order);
                         break;
                     case R.id.item5:
-                        startActivity(new Intent(BottomActivity.this,ContactUsActivity.class));
+                        bottomNav.setSelectedItemId(R.id.nav_cart);
                         break;
                     case R.id.item6:
-                        startActivity(new Intent(BottomActivity.this,AboutUsActivity.class));
+                        startActivity(new Intent(BottomActivity.this,ContactUsActivity.class));
                         break;
                     case R.id.item7:
+                        startActivity(new Intent(BottomActivity.this,AboutUsActivity.class));
+                        break;
+                    case R.id.item8:
                    //     startActivity(new Intent(BottomActivity.this,ShareAppActivity.class));
                         Intent sendIntent = new Intent();
                         sendIntent.setAction(Intent.ACTION_SEND);
@@ -82,10 +85,10 @@ public class BottomActivity extends AppCompatActivity {
                         sendIntent.setType("text/plain");
                         startActivity(sendIntent);
                         break;
-                    case R.id.item8:
+                    case R.id.item9:
                         startActivity(new Intent(BottomActivity.this,TermsAndConditionActivity.class));
                         break;
-                    case R.id.item9:
+                    case R.id.item10:
                         editor.clear();
                         editor.commit();
                         startActivity(new Intent(BottomActivity.this,RegistrationActivity.class));

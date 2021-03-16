@@ -68,4 +68,15 @@
         android:background="@android:color/holo_blue_light"
         android:text="Send OTP"/>
 
+    <TextView
+        android:id="@+id/reg_reg_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg_sendotp"
+        android:layout_marginTop="10dp"
+        android:text="Skip"
+        android:layout_marginLeft="320dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp" />
+
 </RelativeLayout>
