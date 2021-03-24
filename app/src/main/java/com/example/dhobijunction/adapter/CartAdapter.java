@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,16 +19,10 @@ import com.example.dhobijunction.R;
 import com.example.dhobijunction.model.CartModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.protobuf.Empty;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CartAdapter extends FirestoreRecyclerAdapter<CartModel, CartAdapter.CartViewHolder> {
     FragmentActivity cartFragment;
@@ -51,7 +44,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartModel, CartAdapter
         // holder.product_kg_gm.setText(" Per " + list.get(position).getProduct_kg_gm());
 
         holder.cart_total_price.setText(" ₹ " + String.valueOf(Integer.parseInt(model.getQty().trim()) *Integer.parseInt(model.getPrice())));
-      //  holder.cart_total_price.setText(model.getTotal());
+        //  holder.cart_total_price.setText(model.getTotal());
         holder.cart_number.setText(model.getQty());
         Glide.with(cartFragment).load(model.getImage()).into(holder.cart_image);
 
@@ -74,13 +67,13 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartModel, CartAdapter
                         .collection("USERCART")
                         .whereEqualTo("cartItemId",model.getCartItemId())
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (value!=null && !value.isEmpty()){
-                            value.getDocuments().get(0).getReference().delete();
-                        }
-                    }
-                });
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                                if (value!=null && !value.isEmpty()){
+                                    value.getDocuments().get(0).getReference().delete();
+                                }
+                            }
+                        });
             }
         });
 

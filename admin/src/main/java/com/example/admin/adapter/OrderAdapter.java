@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.admin.R;
 import com.example.admin.activity.OrderActivity;
 import com.example.admin.activity.OrderDetailActivity;
+import com.example.admin.activity.SubCategoryActivity;
+import com.example.admin.model.CategoryModel;
 import com.example.admin.model.DeliveryModel;
 import com.example.admin.model.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -31,12 +34,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapter.ViewHolder> {
     Context context;
-
-    List<DeliveryModel> list;
+    Spinner spinner;
+    List<DeliveryModel> list = new ArrayList<>();
     List<String> DeliveryList = new ArrayList<>();
 
     public OrderAdapter(OrderActivity orderActivity, @NonNull FirestoreRecyclerOptions<OrderModel> options, OrderActivity activity) {
@@ -78,15 +83,63 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
         FirebaseFirestore.getInstance().collection("DELIVERYBOY").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (value !=null && !value.isEmpty()) {
-                    list =value.toObjects(DeliveryModel.class);
-                    for (DeliveryModel delivery:list){
-                        DeliveryList.add(delivery.getName());
+
+                if (value != null && !value.isEmpty()) {
+
+                    list = value.toObjects(DeliveryModel.class);
+
+                    for (int i = 0; i < list.size(); i++) {
+                        if (DeliveryList.size()<list.size())
+                            DeliveryList.add(list.get(i).getName());
+
                     }
-                    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,DeliveryList);
-                   holder.spinner.setAdapter(arrayAdapter);
+
+
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, DeliveryList);
+
+                    holder.spinner.setAdapter(arrayAdapter);
+
 
                 }
+
+
+
+            }
+        });
+
+        holder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeliveryModel deliveryModel = new DeliveryModel();
+                deliveryModel.getdId();
+
+               /* FirebaseFirestore.getInstance().collection("deliveryboy").whereEqualTo("did",holder.spinner.getSelectedItem()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        FirebaseFirestore.getInstance().collectionGroup("Order").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                            }
+                        });
+                    }
+                });*/
+                FirebaseFirestore.getInstance().collection("DELICERYBOY").whereEqualTo("name",holder.spinner.getSelectedItem().toString()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        value.getDocuments().get(0).getReference().collection("ORDERS").add(model).addOnSuccessListener(documentReference -> {
+                            String docId = documentReference.getId();
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("orderId", docId);
+                            documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
+                            }).addOnFailureListener(e -> {
+                                Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                        }).addOnFailureListener(e -> {
+                            Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                });
             }
         });
 
@@ -111,6 +164,7 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
         TextView textView, date,name,number,address,email,payment;
         LinearLayout linearLayout;
         Button cancelorder;
+        ImageButton imageButton;
         Spinner spinner;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,6 +178,7 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
             linearLayout = itemView.findViewById(R.id.Order_click);
             cancelorder=itemView.findViewById(R.id.Order_button);
             spinner=itemView.findViewById(R.id.Order_spinner);
+            imageButton = itemView.findViewById(R.id.Order_imagebutton);
         }
     }
 }

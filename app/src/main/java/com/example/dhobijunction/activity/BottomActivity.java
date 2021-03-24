@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.dhobijunction.BuildConfig;
 import com.example.dhobijunction.R;
@@ -20,15 +21,19 @@ import com.example.dhobijunction.fragment.HomeFragment;
 import com.example.dhobijunction.fragment.OrderFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class BottomActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
+    TextView textView;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     BottomNavigationView bottomNav;
     NavigationView navigationView;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,7 @@ public class BottomActivity extends AppCompatActivity {
         preferences = getApplicationContext().getSharedPreferences("Users", 0);
         editor = preferences.edit();
         toolbar = findViewById(R.id.toolbar);
+        textView = findViewById(R.id.textView);
         setSupportActionBar(toolbar);
 
         //navigationView = findViewById(R.id.navigationView);
@@ -45,6 +51,8 @@ public class BottomActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toogle);
         toogle.setDrawerIndicatorEnabled(true);
         toogle.syncState();
+
+    // textView.setText(preferences.getString("userMobile", ""));
 
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
