@@ -1,15 +1,12 @@
 package com.example.dhobijunction.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
-import com.example.dhobijunction.R;
-import com.example.dhobijunction.databinding.ActivityMainBinding;
+ import androidx.appcompat.app.AppCompatActivity;
+ import android.app.ProgressDialog;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Toast;
+ import com.example.dhobijunction.R;
+ import com.example.dhobijunction.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

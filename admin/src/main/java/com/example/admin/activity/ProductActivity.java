@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.example.admin.R;
 import com.example.admin.adapter.ProductAdapter;
-import com.example.admin.adapter.SubCategoryAdapter;
 import com.example.admin.model.ProductModel;
 import com.example.admin.model.SubCategoryModel;
 import com.google.android.gms.tasks.OnCompleteListener;

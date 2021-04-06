@@ -56,7 +56,7 @@ public class OrderModel implements Serializable {
     }
 
 
-    List<CheckoutModel>modelList;
+    List<CheckoutModel> modelList;
 
     public List<CheckoutModel> getModelList() {
         return modelList;

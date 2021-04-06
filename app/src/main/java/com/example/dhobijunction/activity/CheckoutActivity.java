@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,15 +15,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.dhobijunction.R;
-import com.example.dhobijunction.adapter.CartAdapter;
 import com.example.dhobijunction.adapter.CheckoutAdapter;
 import com.example.dhobijunction.databinding.ActivityCheckoutBinding;
-import com.example.dhobijunction.model.CartModel;
 import com.example.dhobijunction.model.CheckoutModel;
 import com.example.dhobijunction.model.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -36,7 +31,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

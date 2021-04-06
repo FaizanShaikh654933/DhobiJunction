@@ -34,7 +34,6 @@
             android:background="@android:color/holo_blue_light"
             app:itemIconTint="@android:color/white"
             app:itemTextColor="@android:color/white"/>
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

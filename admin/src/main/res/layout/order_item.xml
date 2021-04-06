@@ -84,18 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-                <Button
-                    android:id="@+id/Order_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cancel Order"
-                    android:background="@android:color/holo_red_light"
-                    android:layout_below="@id/Order_total"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentRight="true" />
-
                 <Spinner
-                    android:layout_below="@id/Order_button"
+                    android:layout_below="@id/Order_total"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="10dp"
@@ -106,11 +96,22 @@
                 <ImageButton
                     android:id="@+id/Order_imagebutton"
                     android:background="@drawable/ic_baseline_check_24"
-                    android:layout_below="@id/Order_button"
+                    android:layout_below="@id/Order_total"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/rs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/Order_total"
+                    android:layout_marginLeft="-13dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="₹"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/Order_total"
                     android:layout_width="wrap_content"

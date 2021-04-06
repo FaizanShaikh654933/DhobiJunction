@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dhobijunction.R;
-import com.example.dhobijunction.fragment.HomeFragment;
 import com.example.dhobijunction.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,6 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                t1.setVisibility(View.GONE);
                 if (e1.getText().toString().trim().equals("")) {
                     e1.setError("Enter Mobile Number");
                 } else {
@@ -157,7 +157,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                         Toast.makeText(RegistrationActivity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
-
                         String code = phoneAuthCredential.getSmsCode();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
                         verifyOTP(credential);

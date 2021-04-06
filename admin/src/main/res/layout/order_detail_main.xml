@@ -40,11 +40,22 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/rs"
+                    android:textSize="18sp"
+                    android:layout_below="@id/title1"
+                    android:layout_toRightOf="@id/image"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="₹"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
                     android:id="@+id/price"
                     android:textSize="18sp"
                     android:layout_below="@id/title1"
                     android:layout_toRightOf="@id/image"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="35dp"
                     android:layout_marginTop="5dp"
                     android:hint="Price"
                     android:layout_width="wrap_content"
@@ -56,7 +67,7 @@
                     android:textSize="18sp"
                     android:layout_toRightOf="@id/price"
                     android:hint="Qty="
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -66,16 +77,24 @@
                     android:textSize="18sp"
                     android:layout_toRightOf="@id/quantity"
                     android:text="qty"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
+                <TextView
+                    android:id="@+id/rs1"
+                    android:textSize="18sp"
+                    android:layout_below="@id/title1"
+                    android:layout_toRightOf="@id/price"
+                    android:layout_marginLeft="100dp"
+                    android:hint="₹"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/total"
                     android:hint="total"
                     android:textSize="18sp"
                     android:layout_below="@id/title1"
-                    android:layout_marginLeft="130dp"
+                    android:layout_marginLeft="110dp"
                     android:layout_toRightOf="@id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

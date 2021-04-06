@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.admin.R;
 import com.example.admin.activity.SubCategoryActivity;
-import com.example.admin.model.CategoryModel;
 import com.example.admin.model.SubCategoryModel;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;

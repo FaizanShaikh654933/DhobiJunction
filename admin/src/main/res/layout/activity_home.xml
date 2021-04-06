@@ -3,203 +3,223 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.HomeActivity">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_orange_light"
             android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/c1"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp"
-        app:cardCornerRadius="20dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="@android:color/holo_blue_light">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-        <ImageView
-            android:id="@+id/home_imageview"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:background="@mipmap/ic_launcher"/>
-        <TextView
-            android:layout_below="@id/home_imageview"
-            android:id="@+id/home_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:text="Category"
-            android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/c2"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="@android:color/holo_green_light"
-        android:layout_width="match_parent"
-        android:layout_height="180dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-            <ImageView
-                android:id="@+id/home_imageview2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:background="@mipmap/ic_launcher"/>
-            <TextView
-                android:layout_below="@id/home_imageview2"
-                android:id="@+id/home_subcategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true"
-                android:text="Sub Category"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/c3"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="@android:color/holo_red_light"
-        android:layout_width="match_parent"
-        android:layout_height="180dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-            <ImageView
-                android:id="@+id/home_imageview3"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:background="@mipmap/ic_launcher"/>
-            <TextView
-                android:layout_below="@id/home_imageview3"
-                android:id="@+id/home_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true"
-                android:text="Product"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/c4"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="@android:color/tertiary_text_light"
-        android:layout_width="match_parent"
-        android:layout_height="180dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-            <ImageView
-                android:id="@+id/home_imageview4"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:background="@mipmap/ic_launcher"/>
-            <TextView
-                android:layout_below="@id/home_imageview4"
-                android:id="@+id/home_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true"
-                android:text="Order"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/c5"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="20dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@android:color/holo_purple"
+                android:id="@+id/c1"
                 android:layout_width="match_parent"
-                android:layout_height="180dp">
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@android:color/holo_blue_light"
+                app:cardCornerRadius="20dp"
+                app:cardPreventCornerOverlap="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="180dp">
+
+                    <ImageView
+                        android:id="@+id/home_imageview"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/category" />
+
+                    <TextView
+                        android:id="@+id/home_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/home_imageview"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Category"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/c2"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@android:color/holo_green_light"
+                app:cardCornerRadius="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:id="@+id/home_imageview2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/subcategory" />
+
+                    <TextView
+                        android:id="@+id/home_subcategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/home_imageview2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Sub Category"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/c3"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@android:color/holo_red_light"
+                app:cardCornerRadius="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:id="@+id/home_imageview3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/product" />
+
+                    <TextView
+                        android:id="@+id/home_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/home_imageview3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Product"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/c4"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@android:color/tertiary_text_light"
+                app:cardCornerRadius="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:id="@+id/home_imageview4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/order" />
+
+                    <TextView
+                        android:id="@+id/home_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/home_imageview4"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Order"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/c5"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@android:color/holo_purple"
+                app:cardCornerRadius="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
                     <ImageView
                         android:id="@+id/home_imageview5"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="40dp"
-                        android:background="@mipmap/ic_launcher"/>
+                        android:background="@drawable/offers" />
+
                     <TextView
-                        android:layout_below="@id/home_imageview5"
                         android:id="@+id/home_Offers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_below="@id/home_imageview5"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
                         android:text="Offers"
-                        android:textSize="18sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/c6"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="20dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="#FF30F5"
                 android:layout_width="match_parent"
-                android:layout_height="180dp">
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="#FF30F5"
+                app:cardCornerRadius="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="180dp">
+
                     <ImageView
                         android:id="@+id/home_imageview6"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="40dp"
-                        android:background="@mipmap/ic_launcher"/>
+                        android:background="@drawable/deliveryboy" />
+
                     <TextView
-                        android:layout_below="@id/home_imageview6"
                         android:id="@+id/home_deliveryboy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_below="@id/home_imageview6"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
                         android:text="Delivery Boy"
-                        android:textSize="18sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

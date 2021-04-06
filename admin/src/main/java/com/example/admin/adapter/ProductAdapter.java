@@ -11,16 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.admin.R;
 import com.example.admin.activity.ProductActivity;
-import com.example.admin.activity.SubCategoryActivity;
-import com.example.admin.model.CategoryModel;
 import com.example.admin.model.ProductModel;
-import com.example.admin.model.SubCategoryModel;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;

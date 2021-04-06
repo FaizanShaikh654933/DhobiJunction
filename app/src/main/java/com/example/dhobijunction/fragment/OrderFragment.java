@@ -16,8 +16,6 @@ import com.example.dhobijunction.R;
 import com.example.dhobijunction.adapter.OrderAdapter;
 import com.example.dhobijunction.model.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.database.Query;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class OrderFragment extends Fragment {

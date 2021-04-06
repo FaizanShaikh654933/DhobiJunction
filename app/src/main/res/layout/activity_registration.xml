@@ -73,9 +73,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/reg_sendotp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="Skip"
-        android:layout_marginLeft="320dp"
+        android:padding="@dimen/dimen_10dp"
+        android:background="@drawable/customborder1"
+        android:layout_marginLeft="280dp"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="20sp" />
 

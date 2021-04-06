@@ -12,8 +12,15 @@ public class OrderModel implements Serializable {
     String Address;
     String Total;
     String Name;
+    String oId;
 
+    public String getoId() {
+        return oId;
+    }
 
+    public void setoId(String oId) {
+        this.oId = oId;
+    }
 
     public String getEmail() {
         return Email;
