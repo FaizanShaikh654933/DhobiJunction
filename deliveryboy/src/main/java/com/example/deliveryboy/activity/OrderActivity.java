@@ -43,7 +43,6 @@ public class OrderActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Order");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FirebaseFirestore.getInstance().collection("DELIVERYBOY").whereEqualTo("dId",preferences.getString("dId","")).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

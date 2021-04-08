@@ -111,10 +111,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/d_b1"
             android:layout_gravity="center"
+            android:background="@android:color/holo_blue_light"
             android:text="add"
             android:layout_centerHorizontal="true"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/d_rv"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

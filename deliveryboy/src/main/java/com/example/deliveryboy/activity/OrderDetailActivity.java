@@ -35,6 +35,10 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Order Detail");
+
         recyclerView = findViewById(R.id.Order_detail_rv);
         cancelorder = findViewById(R.id.order_detail_button1);
         trackorder = findViewById(R.id.order_detail_button2);
@@ -84,5 +88,11 @@ public class OrderDetailActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

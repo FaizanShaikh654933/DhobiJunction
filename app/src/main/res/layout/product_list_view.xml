@@ -41,8 +41,8 @@
         android:layout_marginTop="5dp"
         android:layout_below="@id/product_name"
         android:layout_toRightOf="@id/product_price"
-        android:id="@+id/product_kg_gm"
-        android:text="kg"
+        android:id="@+id/product_Rs"
+        android:text="Rs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -51,7 +51,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/product_image"
-        android:layout_below="@id/product_kg_gm"
+        android:layout_below="@id/product_Rs"
         android:text="Total:"
         android:id="@+id/product_total"
         android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
     <TextView
         android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/product_kg_gm"
+        android:layout_below="@id/product_Rs"
         android:layout_toRightOf="@id/product_total"
         android:id="@+id/product_total_price"
         android:text="Total Price"

@@ -26,9 +26,9 @@ public class ProductModel {
     @Expose
     String product_price;
 
-    @SerializedName("product_kg_gm")
+    @SerializedName("product_Rs")
     @Expose
-    String product_kg_gm;
+    String product_Rs;
 
     public String getProduct_id() {
         return product_id;
@@ -50,7 +50,7 @@ public class ProductModel {
         return product_price;
     }
 
-    public String getProduct_kg_gm() {
-        return product_kg_gm;
+    public String getProduct_Rs() {
+        return product_Rs;
     }
 }

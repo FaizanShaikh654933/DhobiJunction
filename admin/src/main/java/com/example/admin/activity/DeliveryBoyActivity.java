@@ -30,6 +30,10 @@ public class DeliveryBoyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_boy);
+
+        getSupportActionBar().setTitle("Delivery Boy");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         e1=findViewById(R.id.d_e1);
         e2=findViewById(R.id.d_e2);
         e3=findViewById(R.id.d_e3);
@@ -81,5 +85,10 @@ public class DeliveryBoyActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

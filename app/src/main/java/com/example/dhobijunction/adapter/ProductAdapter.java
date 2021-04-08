@@ -79,7 +79,7 @@ public class ProductAdapter extends FirestoreRecyclerAdapter<ProModel, ProductAd
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView product_name, product_price, product_kg_gm, product_number, product_total, product_total_price;
+        TextView product_name, product_price, product_Rs, product_number, product_total, product_total_price;
         ImageView product_image;
         ImageButton product_remove, product_add;
         Button product_button;
@@ -92,7 +92,7 @@ public class ProductAdapter extends FirestoreRecyclerAdapter<ProModel, ProductAd
             product_number = itemView.findViewById(R.id.product_number);
             product_remove = itemView.findViewById(R.id.product_remove);
             product_add = itemView.findViewById(R.id.product_add);
-            product_kg_gm = itemView.findViewById(R.id.product_kg_gm);
+            product_Rs = itemView.findViewById(R.id.product_Rs);
             product_price = itemView.findViewById(R.id.product_price);
             product_name = itemView.findViewById(R.id.product_name);
             product_image = itemView.findViewById(R.id.product_image);

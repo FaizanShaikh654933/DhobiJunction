@@ -54,13 +54,15 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(screen.getRoot());
         getSupportActionBar().setTitle("Checkout");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        pref = getSharedPreferences("Users", 0);
+        pref = getApplicationContext().getSharedPreferences("Users",0);
         mobile = pref.getString("userMobile", "");
         total  = getIntent().getStringExtra("total");
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timelist);
         screen.checkoutSpinner.setAdapter(spinnerArrayAdapter);
+
         screen.tvCurrentLoction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
