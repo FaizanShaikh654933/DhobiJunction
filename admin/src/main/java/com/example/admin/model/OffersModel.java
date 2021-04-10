@@ -1,10 +1,19 @@
 package com.example.admin.model;
 
 public class OffersModel {
+    String offerId;
     String title;
     String price;
     String code;
     String date;
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
+    }
 
     public String getTitle() {
         return title;

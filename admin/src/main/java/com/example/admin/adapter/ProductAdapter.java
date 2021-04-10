@@ -46,6 +46,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Viewhold
         holder.title1.setText(modelList.get(position).getTitle());
         holder.price.setText(modelList.get(position).getPrice());
         Glide.with(context).load(modelList.get(position).getImage()).into(holder.imageView);
+
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

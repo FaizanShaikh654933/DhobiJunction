@@ -4,28 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/d_name"
+            android:text="Name :-"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/d_t1"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
+            android:layout_toRightOf="@id/d_name"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/d_email"
+            android:layout_below="@id/d_name"
+            android:text="Email :-"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/d_t2"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/d_name"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d_t1"
-            android:layout_marginTop="10dp"/>
+            android:layout_toRightOf="@id/d_email"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/d_number"
+            android:layout_below="@id/d_email"
+            android:text="Number :-"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/d_t3"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/d_email"
+            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d_t2"
-            android:layout_marginTop="10dp" />
+            android:layout_toRightOf="@id/d_number"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

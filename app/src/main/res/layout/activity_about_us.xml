@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.AboutUsActivity">
 
-    <ImageView
-        android:id="@+id/about_image"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="50dp"
-        android:src="@mipmap/dhobijunction"
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/about_tv1"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        android:layout_below="@id/about_image"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:textStyle="bold"
-        android:text="About Us"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/about_tv2"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:layout_below="@id/about_tv1"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:text="Dhobi Junction is the most economical with quickest service laundromat in Ahmedabad, which is an ideal solution for students, working professionals or anyone who would like to manage their laundry quickly, economically and at utmost comfort. We Provide free order Pickup &amp; Dilivery for your Garments. So washing your clothes is no more headache."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/about_image"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/dhobijunction"
+            android:layout_width="300dp"
+            android:layout_height="300dp"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/about_tv1"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:layout_below="@id/about_image"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:textStyle="bold"
+            android:text="About Us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/about_tv2"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_below="@id/about_tv1"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="Dhobi Junction is the most economical with quickest service laundromat in Ahmedabad, which is an ideal solution for students, working professionals or anyone who would like to manage their laundry quickly, economically and at utmost comfort. We Provide free order Pickup &amp; Dilivery for your Garments. So washing your clothes is no more headache."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
