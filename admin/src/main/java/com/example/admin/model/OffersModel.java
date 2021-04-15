@@ -19,7 +19,7 @@ public class OffersModel {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String s, String title) {
         this.title = title;
     }
 
@@ -27,7 +27,7 @@ public class OffersModel {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(String s, String price) {
         this.price = price;
     }
 
@@ -35,7 +35,7 @@ public class OffersModel {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(String s, String code) {
         this.code = code;
     }
 
@@ -43,7 +43,7 @@ public class OffersModel {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(String s, String date) {
         this.date = date;
     }
 }

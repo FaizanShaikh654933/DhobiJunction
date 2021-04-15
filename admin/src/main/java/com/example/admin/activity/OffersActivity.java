@@ -14,10 +14,12 @@ import com.example.admin.R;
 import com.example.admin.adapter.CategoryAdapter;
 import com.example.admin.adapter.DeliveryboyAdapter;
 import com.example.admin.adapter.OffersAdapter;
+import com.example.admin.adapter.SubCategoryAdapter;
 import com.example.admin.databinding.ActivityOffersBinding;
 import com.example.admin.model.CategoryModel;
 import com.example.admin.model.DeliveryModel;
 import com.example.admin.model.OffersModel;
+import com.example.admin.model.SubCategoryModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,6 +40,7 @@ public class OffersActivity extends AppCompatActivity {
     ActivityOffersBinding binding;
     OffersModel model;
     OffersAdapter adapter;
+    List<OffersModel> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,8 @@ public class OffersActivity extends AppCompatActivity {
             }
 
         });
-        binding.btnPromcode.setOnClickListener(new View.OnClickListener() {
+
+        /* binding.btnPromcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Map map=new HashMap<>();
@@ -82,6 +86,57 @@ public class OffersActivity extends AppCompatActivity {
         adapter = new OffersAdapter(this, rvOptions, this);
         binding.offersRecyclerview.setAdapter(adapter);
 
+*/
+        binding.btnPromcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                model = new OffersModel();
+                model.setCode("code", binding.promeCode.getText().toString());
+                model.setDate("date", binding.promeExdate.getText().toString());
+                model.setPrice("price", binding.promePrice.getText().toString());
+                model.setTitle("title", binding.promeTitle.getText().toString());
+
+                /*FirebaseFirestore.getInstance().collection("OFFERS").add(model)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Map map=new HashMap();
+                        map.put("offerId",documentReference.getId());
+                        documentReference.update(map).addOnSuccessListener(new OnSuccessListener() {
+                            @Override
+                            public void onSuccess(Object o) {
+                                Toast.makeText(OffersActivity.this, "Add Offer", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });*/
+                FirebaseFirestore.getInstance().collection("OFFERS").add(model)
+                        .addOnSuccessListener(documentReference -> {
+                            String docId = documentReference.getId();
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("offerId", docId);
+                            documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                Toast.makeText(OffersActivity.this, "Offers Added", Toast.LENGTH_SHORT).show();
+                            }).addOnFailureListener(e -> {
+                                Toast.makeText(OffersActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                        }).addOnFailureListener(e -> {
+                    Toast.makeText(OffersActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+        FirebaseFirestore.getInstance().collection("OFFERS").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null && !value.isEmpty()) {
+                    list = value.toObjects(OffersModel.class);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OffersActivity.this);
+                    binding.offersRecyclerview.setLayoutManager(linearLayoutManager);
+                    adapter = new OffersAdapter(OffersActivity.this, list);
+                    binding.offersRecyclerview.setAdapter(adapter);
+                }
+            }
+        });
 
     }
 
@@ -112,16 +167,4 @@ public class OffersActivity extends AppCompatActivity {
         finish();
         return super.onSupportNavigateUp();
     }
-
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
-
 }

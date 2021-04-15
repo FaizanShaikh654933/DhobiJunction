@@ -58,14 +58,14 @@
             android:layout_marginLeft="20dp"
             android:id="@+id/o_price"
             android:layout_below="@id/o_code"
-            android:text="Price :-"
-            android:textSize="18sp"
+            android:text="Discount :-"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/o_t3"
-            android:layout_width="164dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/o_code"
             android:layout_marginLeft="20dp"

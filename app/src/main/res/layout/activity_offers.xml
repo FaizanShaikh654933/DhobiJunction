@@ -7,12 +7,11 @@
     tools:context=".activity.OffersActivity">
 
 
-    <TextView
-        android:textColor="@android:color/holo_blue_light"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:text="Offers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/offer_rv"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action);*/
@@ -69,9 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.apply();
                                     Toast.makeText(LoginActivity.this, "Login SuccessFull", Toast.LENGTH_SHORT).show();
                                     finish();
-                                }
-                                else {
-                                    Toast.makeText(LoginActivity.this, "Cannot login ,Incorrect Email and Password", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
