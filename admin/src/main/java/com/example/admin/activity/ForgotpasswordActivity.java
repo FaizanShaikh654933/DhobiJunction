@@ -23,6 +23,10 @@ public class ForgotpasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgotpassword);
+        getSupportActionBar().setTitle("Forgot Password");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         editText=findViewById(R.id.f_emil);
         button=findViewById(R.id.sb);
         mAuth = FirebaseAuth.getInstance();
@@ -50,5 +54,11 @@ public class ForgotpasswordActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            if (email.getText().toString().equals("admin@gmail.com")){
+                            if (email.getText().toString().equals("dhobijunction66@gmail.com")){
                                 Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                 loader.setVisibility(View.GONE);
