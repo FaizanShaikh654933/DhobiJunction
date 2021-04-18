@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -66,31 +67,35 @@ public class SubCategoryActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model =new SubCategoryModel();
+                String Title = e1.getText().toString().trim();
+                if (TextUtils.isEmpty(Title)) {
+                    e1.setError("Enter New Sub Category");
 
-                for (int i=0;i<list.size();i++){
-                    if (list.get(i).getTitle()==spinner.getSelectedItem().toString()){
-                        model.setcId(list.get(i).getcId());
-                        model.setTitle(e1.getText().toString());
+                } else {
+                    model = new SubCategoryModel();
+
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getTitle() == spinner.getSelectedItem().toString()) {
+                            model.setcId(list.get(i).getcId());
+                            model.setTitle(e1.getText().toString());
 
 
-                        FirebaseFirestore.getInstance().collection("SUB_CATEGORY" ).add(model).addOnSuccessListener(documentReference -> {
-                            String docId = documentReference.getId();
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("sId", docId);
-                            documentReference.update(map).addOnSuccessListener(aVoid -> {
-                                Toast.makeText(SubCategoryActivity.this, "success", Toast.LENGTH_SHORT).show();
+                            FirebaseFirestore.getInstance().collection("SUB_CATEGORY").add(model).addOnSuccessListener(documentReference -> {
+                                String docId = documentReference.getId();
+                                Map<String, Object> map = new HashMap<>();
+                                map.put("sId", docId);
+                                documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(SubCategoryActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                }).addOnFailureListener(e -> {
+                                    Toast.makeText(SubCategoryActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
                             }).addOnFailureListener(e -> {
                                 Toast.makeText(SubCategoryActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
-                        }).addOnFailureListener(e -> {
-                            Toast.makeText(SubCategoryActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        });
+                            });
+                        }
                     }
                 }
-
-
             }
         });
         FirebaseFirestore.getInstance().collection("SUB_CATEGORY").addSnapshotListener(new EventListener<QuerySnapshot>() {

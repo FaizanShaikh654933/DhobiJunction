@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -109,71 +110,82 @@ public class ProductActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                String Title = e1.getText().toString().trim();
+                String Price = e2.getText().toString().trim();
 
-                model=new ProductModel();
+                if (TextUtils.isEmpty(Title)) {
+                    e1.setError("Enter Product Name ");
 
-                for (int i=0;i<list.size();i++){
-                    if (list.get(i).getTitle()==spinner.getSelectedItem().toString()){
-                        model.setsId(list.get(i).getsId());
-                        model.setTitle(e1.getText().toString());
-                        model.setPrice(e2.getText().toString());
-                        final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
-                        progressDialog.setTitle("Uploading...");
-                        progressDialog.show();
+                }
+                if (TextUtils.isEmpty(Price)) {
+                    e2.setError("Enter Price");
+
+                } else {
+
+                    model = new ProductModel();
+
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getTitle() == spinner.getSelectedItem().toString()) {
+                            model.setsId(list.get(i).getsId());
+                            model.setTitle(e1.getText().toString());
+                            model.setPrice(e2.getText().toString());
+                            final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
+                            progressDialog.setTitle("Uploading...");
+                            progressDialog.show();
 
 
-                        StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
-                        ref.putFile(filepath)
-                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Uri> task) {
-                                                model.setImage(  task.getResult().toString());
+                            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+                            ref.putFile(filepath)
+                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Uri> task) {
+                                                    model.setImage(task.getResult().toString());
 
-                                                FirebaseFirestore.getInstance().collection("PRODUCTS").add(model).addOnSuccessListener(documentReference -> {
-                                                    String docId = documentReference.getId();
-                                                    Map<String, Object> map = new HashMap<>();
-                                                    map.put("pId", docId);
-                                                    documentReference.update(map).addOnSuccessListener(aVoid -> {
-                                                        if(filepath != null)
-                                                        {
-                                                            final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
-                                                            progressDialog.setTitle("Uploading...");
-                                                            progressDialog.show();
-                                                            progressDialog.dismiss();
+                                                    FirebaseFirestore.getInstance().collection("PRODUCTS").add(model).addOnSuccessListener(documentReference -> {
+                                                        String docId = documentReference.getId();
+                                                        Map<String, Object> map = new HashMap<>();
+                                                        map.put("pId", docId);
+                                                        documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                                            if (filepath != null) {
+                                                                final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
+                                                                progressDialog.setTitle("Uploading...");
+                                                                progressDialog.show();
+                                                                progressDialog.dismiss();
 
-                                                        }
+                                                            }
+                                                        });
                                                     });
-                                                });
-                                            }
-                                        });
+                                                }
+                                            });
 
-                                        // Continue with the task to get the download URL
+                                            // Continue with the task to get the download URL
 
-                                        progressDialog.dismiss();
+                                            progressDialog.dismiss();
 
-                                        Toast.makeText(ProductActivity.this, "success", Toast.LENGTH_SHORT).show();
-                                        Toast.makeText(ProductActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(ProductActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                                        double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                                .getTotalByteCount());
+                                            Toast.makeText(ProductActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProductActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(ProductActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+                                                    .getTotalByteCount());
 
-                                        progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                                    }
-                                });
+                                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                                        }
+                                    });
+                        }
                     }
                 }
             }

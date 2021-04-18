@@ -1,6 +1,7 @@
 package com.example.admin.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,25 +44,48 @@ public class DeliveryBoyActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model = new DeliveryModel();
+                String Name = e1.getText().toString().trim();
+                String PhoneNumber = e2.getText().toString().trim();
+                String Email = e3.getText().toString().trim();
+                String Password = e4.getText().toString().trim();
+                if (TextUtils.isEmpty(Name)) {
+                    e1.setError("Enter Name");
 
-                model.setName(e1.getText().toString());
-                model.setPhone(e2.getText().toString());
-                model.setEmail(e3.getText().toString());
-                model.setPassword(e4.getText().toString());
-                FirebaseFirestore.getInstance().collection("DELIVERYBOY").add(model)
-                        .addOnSuccessListener(documentReference -> {
-                            String docId = documentReference.getId();
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("dId", docId);
-                            documentReference.update(map).addOnSuccessListener(aVoid -> {
-                                Toast.makeText(DeliveryBoyActivity.this, "success", Toast.LENGTH_SHORT).show();
+                }
+                if (TextUtils.isEmpty(Password)) {
+                    e4.setError("Enter Password");
+
+                }
+                if (TextUtils.isEmpty(Email)) {
+                    e3.setError("Enter Email");
+
+                }
+                if (PhoneNumber.length() < 10 || PhoneNumber.length() > 10) {
+                    e2.setError("Phone Number Must be 10 number ");
+
+
+                } else {
+                    model = new DeliveryModel();
+
+                    model.setName(e1.getText().toString());
+                    model.setPhone(e2.getText().toString());
+                    model.setEmail(e3.getText().toString());
+                    model.setPassword(e4.getText().toString());
+
+                    FirebaseFirestore.getInstance().collection("DELIVERYBOY").add(model)
+                            .addOnSuccessListener(documentReference -> {
+                                String docId = documentReference.getId();
+                                Map<String, Object> map = new HashMap<>();
+                                map.put("dId", docId);
+                                documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(DeliveryBoyActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                }).addOnFailureListener(e -> {
+                                    Toast.makeText(DeliveryBoyActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
                             }).addOnFailureListener(e -> {
-                                Toast.makeText(DeliveryBoyActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
-                        }).addOnFailureListener(e -> {
-                    Toast.makeText(DeliveryBoyActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                        Toast.makeText(DeliveryBoyActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
             }
         });
         Query query = FirebaseFirestore.getInstance().collectionGroup("DELIVERYBOY");

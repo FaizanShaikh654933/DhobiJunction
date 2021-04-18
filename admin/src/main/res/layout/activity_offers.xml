@@ -48,7 +48,7 @@
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price:"/>
+                    android:text="Discount:"/>
 
                 <EditText
                     android:id="@+id/prome_price"

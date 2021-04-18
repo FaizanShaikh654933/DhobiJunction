@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -90,11 +91,33 @@ public class OffersActivity extends AppCompatActivity {
         binding.btnPromcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model = new OffersModel();
-                model.setCode("code", binding.promeCode.getText().toString());
-                model.setDate("date", binding.promeExdate.getText().toString());
-                model.setPrice("price", binding.promePrice.getText().toString());
-                model.setTitle("title", binding.promeTitle.getText().toString());
+                String Code = binding.promeCode.getText().toString().trim();
+                String Date = binding.promeExdate.getText().toString().trim();
+                String Price = binding.promePrice.getText().toString().trim();
+                String Title = binding.promeTitle.getText().toString().trim();
+
+                if (TextUtils.isEmpty(Code)) {
+                    binding.promeCode.setError("Enter Code");
+
+                }
+                if (TextUtils.isEmpty(Date)) {
+                    binding.promeExdate.setError("Enter Date");
+
+                }
+                if (TextUtils.isEmpty(Price)) {
+                    binding.promePrice.setError("Enter Price");
+
+                }
+                if (TextUtils.isEmpty(Title)) {
+                    binding.promeTitle.setError("Enter Title");
+
+                }
+                else {
+                    model = new OffersModel();
+                    model.setCode("code", binding.promeCode.getText().toString());
+                    model.setDate("date", binding.promeExdate.getText().toString());
+                    model.setPrice("price", binding.promePrice.getText().toString());
+                    model.setTitle("title", binding.promeTitle.getText().toString());
 
                 /*FirebaseFirestore.getInstance().collection("OFFERS").add(model)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -110,19 +133,20 @@ public class OffersActivity extends AppCompatActivity {
                         });
                     }
                 });*/
-                FirebaseFirestore.getInstance().collection("OFFERS").add(model)
-                        .addOnSuccessListener(documentReference -> {
-                            String docId = documentReference.getId();
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("offerId", docId);
-                            documentReference.update(map).addOnSuccessListener(aVoid -> {
-                                Toast.makeText(OffersActivity.this, "Offers Added", Toast.LENGTH_SHORT).show();
+                    FirebaseFirestore.getInstance().collection("OFFERS").add(model)
+                            .addOnSuccessListener(documentReference -> {
+                                String docId = documentReference.getId();
+                                Map<String, Object> map = new HashMap<>();
+                                map.put("offerId", docId);
+                                documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(OffersActivity.this, "Offers Added", Toast.LENGTH_SHORT).show();
+                                }).addOnFailureListener(e -> {
+                                    Toast.makeText(OffersActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
                             }).addOnFailureListener(e -> {
-                                Toast.makeText(OffersActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
-                        }).addOnFailureListener(e -> {
-                    Toast.makeText(OffersActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                        Toast.makeText(OffersActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
             }
         });
         FirebaseFirestore.getInstance().collection("OFFERS").addSnapshotListener(new EventListener<QuerySnapshot>() {
