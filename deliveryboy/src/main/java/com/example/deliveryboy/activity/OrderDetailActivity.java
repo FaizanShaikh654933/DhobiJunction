@@ -53,12 +53,14 @@ public class OrderDetailActivity extends AppCompatActivity {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (value!=null && !value.isEmpty()){
-                            value.getDocuments().get(0).getReference().collection("Order").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            value.getDocuments().get(0).getReference().collection("Order").whereEqualTo("orderId",Model.getOrderId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                                 @Override
                                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                                    value.getDocuments().get(0).getReference().delete();
-                                    Toast.makeText(OrderDetailActivity.this, "Order Has been Cancel", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                    if (value!=null && !value.isEmpty()) {
+                                        value.getDocuments().get(0).getReference().delete();
+                                        Toast.makeText(OrderDetailActivity.this, "Order Has been Cancel", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
                                 }
                             });
                         }
@@ -66,6 +68,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 });
             }
         });
+
         trackorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

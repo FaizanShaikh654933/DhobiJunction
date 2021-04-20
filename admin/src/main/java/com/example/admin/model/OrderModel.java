@@ -14,7 +14,6 @@ public class OrderModel implements Serializable {
     String Name;
 
 
-
     public String getEmail() {
         return Email;
     }
