@@ -44,9 +44,13 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     String mobile = "";
     int total = 0;
     boolean isQtyUpdated;
-
+    int offerPrice = 0;
 
     public CartFragment() {
+    }
+
+    public CartFragment(String offerPrice) {
+        this.offerPrice = Integer.parseInt(offerPrice);
     }
 
     public CartFragment(CartModel CartModel) {
@@ -80,7 +84,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CheckoutActivity.class);
-                intent.putExtra("total",t6.getText().toString());
+                intent.putExtra("total", t6.getText().toString());
                 startActivity(intent);
             }
         });
@@ -105,10 +109,13 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
                     int total = 0;
                     for (int i = 0; i < value.size(); i++) {
 
-                       total += Integer.parseInt(value.getDocuments().get(i).get("total").toString());
+                        total += Integer.parseInt(value.getDocuments().get(i).get("total").toString());
 
                     }
-                    t6.setText(String.valueOf(total));
+                    if (total >= offerPrice && offerPrice!=0){
+                        Toast.makeText(getActivity(), "Offer Applied", Toast.LENGTH_SHORT).show();
+                        t6.setText(String.valueOf(total - offerPrice));}
+                    else t6.setText(String.valueOf(total));
                 }
             }
         });
@@ -130,25 +137,23 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     public void getQty(String s, CartModel model) {
         final Map<String, Object> map = new HashMap<>();
         map.put("qty", s);
-        map.put("total",String.valueOf(Integer.parseInt(s)*Integer.parseInt(model.getPrice())));
+        map.put("total", String.valueOf(Integer.parseInt(s) * Integer.parseInt(model.getPrice())));
         FirebaseFirestore.getInstance().collection("USERS").document(pref.getString("userMobile", ""))
                 .collection("USERCART").whereEqualTo("cartItemId", model.getCartItemId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
                 if (value != null && !value.isEmpty()) {
-                        value.getDocuments().get(0).getReference().update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful())
-                                    {
-                                        Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
-                                        map.clear();
-                                    }
-                                else
-                                    Toast.makeText(getActivity(), "" + task.getException(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    value.getDocuments().get(0).getReference().update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                                map.clear();
+                            } else
+                                Toast.makeText(getActivity(), "" + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 if (error != null) {
                     Toast.makeText(getActivity(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();

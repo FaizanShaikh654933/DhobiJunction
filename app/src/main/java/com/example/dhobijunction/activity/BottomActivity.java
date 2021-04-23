@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dhobijunction.BuildConfig;
 import com.example.dhobijunction.R;
@@ -23,6 +24,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class BottomActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     TextView textView;
@@ -32,8 +35,11 @@ public class BottomActivity extends AppCompatActivity {
     NavigationView navigationView;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-
+    String action = "";
+    String offerPrice = "";
+    Boolean isOfferApplied = false;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +51,25 @@ public class BottomActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //navigationView = findViewById(R.id.navigationView);
+
+        action = getIntent().getStringExtra("action");
+
+        if (Objects.equals(action, "cart")) {
+            offerPrice = getIntent().getStringExtra("offerPrice");
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new CartFragment(offerPrice)).commit();
+        } else
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
+
         drawerLayout = findViewById(R.id.drawerlayout);
 
-        ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toogle);
         toogle.setDrawerIndicatorEnabled(true);
         toogle.syncState();
 
-    // textView.setText(preferences.getString("userMobile", ""));
+        // textView.setText(preferences.getString("userMobile", ""));
 
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
@@ -62,12 +79,12 @@ public class BottomActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.item1:
-                        startActivity(new Intent(BottomActivity.this,ProductActivity.class));
+                        startActivity(new Intent(BottomActivity.this, ProductActivity.class));
                         break;
                     case R.id.item2:
-                        startActivity(new Intent(BottomActivity.this,OffersActivity.class));
+                        startActivity(new Intent(BottomActivity.this, OffersActivity.class));
                         break;
                     case R.id.item3:
                         bottomNav.setSelectedItemId(R.id.nav_order);
@@ -76,13 +93,13 @@ public class BottomActivity extends AppCompatActivity {
                         bottomNav.setSelectedItemId(R.id.nav_cart);
                         break;
                     case R.id.item5:
-                        startActivity(new Intent(BottomActivity.this,ContactUsActivity.class));
+                        startActivity(new Intent(BottomActivity.this, ContactUsActivity.class));
                         break;
                     case R.id.item6:
-                        startActivity(new Intent(BottomActivity.this,AboutUsActivity.class));
+                        startActivity(new Intent(BottomActivity.this, AboutUsActivity.class));
                         break;
                     case R.id.item7:
-                   //     startActivity(new Intent(BottomActivity.this,ShareAppActivity.class));
+                        //     startActivity(new Intent(BottomActivity.this,ShareAppActivity.class));
                         Intent sendIntent = new Intent();
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT,
@@ -91,27 +108,24 @@ public class BottomActivity extends AppCompatActivity {
                         startActivity(sendIntent);
                         break;
                     case R.id.item8:
-                        startActivity(new Intent(BottomActivity.this,TermsAndConditionActivity.class));
+                        startActivity(new Intent(BottomActivity.this, TermsAndConditionActivity.class));
                         break;
                     case R.id.item9:
                         editor.clear();
                         editor.commit();
-                        startActivity(new Intent(BottomActivity.this,RegistrationActivity.class));
+                        startActivity(new Intent(BottomActivity.this, RegistrationActivity.class));
                         finish();
                         break;
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
-                return  false;
+                return false;
 
             }
 
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
     }
-
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListner =
@@ -120,7 +134,7 @@ public class BottomActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
 
-                    switch (item.getItemId()){
+                    switch (item.getItemId()) {
                         case R.id.nav_home:
                             selectedFragment = new HomeFragment();
                             setTitle("Dhobi Junction");
@@ -142,10 +156,9 @@ public class BottomActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(bottomNav.getSelectedItemId()!=R.id.nav_home){
+        if (bottomNav.getSelectedItemId() != R.id.nav_home) {
             bottomNav.setSelectedItemId(R.id.nav_home);
-        }
-        else
+        } else
             bottomNav.setSelectedItemId(R.id.nav_home);
     }
 }
